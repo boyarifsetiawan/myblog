@@ -22,7 +22,7 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
-    public function getExcerpt()
+    public function getExcerpt() //Untuk Membuat excerpt dari body
     {
         return Str::limit($this->body, 150, '...');
     }
@@ -48,10 +48,9 @@ class Post extends Model
         $query->where('published_at', '<=', Carbon::now());
     }
 
-    public function scopeWithCategory($category)
+    public function scopeWithCategory($query, $category) //mencari category dengan slug
     {
-        $posts_categories = Post::query();
-        $posts_categories->whereHas('categories', function ($query) use ($category) {
+        $query->whereHas('categories', function ($query) use ($category) {
             $query->where('slug', $category);
         });
     }

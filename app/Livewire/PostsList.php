@@ -25,6 +25,7 @@ class PostsList extends Component
     public function updateSearch($search)
     {
         $this->search = $search;
+        $this->resetPage();
     }
 
     public function setSort($sort)
@@ -33,21 +34,34 @@ class PostsList extends Component
         $this->resetPage();
     }
 
+    public function resetFilter()
+    {
+        $this->search = '';
+        $this->category = '';
+        $this->resetPage();
+    }
+
+
     #[Computed()]
     public function posts()
     {
         return Post::published()
             ->where('title', 'like', "%{$this->search}%")
-            ->when(Category::where('slug', $this->category)->first(), function ($query) {
+            ->when($this->activeCategory, function ($query) {
                 $query->withCategory($this->category);
             })
             ->orderBy('published_at', $this->sort)
             ->paginate(3);
     }
 
+    #[Computed()]
+    public function activeCategory()
+    {
+        return Category::where('slug', $this->category)->first();
+    }
+
     public function render()
     {
-        sleep(1);
         return view('livewire.posts-list');
     }
 }

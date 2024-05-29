@@ -49,7 +49,9 @@ class PostResource extends Resource
                     DateTimePicker::make('published_at')->nullable(),
                     Checkbox::make('featured'),
                     Select::make('author')->relationship('author', 'name')->searchable()->required(),
-                    Select::make('categories')->relationship('categories', 'title')->searchable()->multiple()
+                    Select::make('categories')->multiple()
+                        ->relationship('categories', 'title')
+                        ->searchable(),
                 ]),
             ]);
     }
