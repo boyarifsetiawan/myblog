@@ -18,6 +18,7 @@ use App\Http\Controllers\PostController;
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 Route::middleware([
     'auth:sanctum',

@@ -22,10 +22,11 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
-    public function getExcerpt() //Untuk Membuat excerpt dari body
+    public function likes()
     {
-        return Str::limit($this->body, 150, '...');
+        return $this->belongsToMany(User::class, 'post_user');
     }
+
 
     public function author()
     {
@@ -37,6 +38,10 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function getExcerpt() //Untuk Membuat excerpt dari body
+    {
+        return Str::limit($this->body, 150, '...');
+    }
     public function getThumbnailImage()
     {
         $isUrl = str_contains($this->image, 'http');

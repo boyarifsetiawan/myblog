@@ -2,10 +2,10 @@
     <div class="flex justify-between items-center border-b border-gray-100">
         <div class="text-gray-800 text-md font-bold">
             @if ($this->activeCategory || $search)
-                <button wire:click="resetFilter()" class="mx-5 px-2 border-b-2 border-2 hover:border-b-4">x</button>
+                <button wire:click="resetFilter()"
+                    class="inline-flex items-center px-2 pb-1 rounded-md border-2 border-transparent text-xl font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 ease-in-out">x</button>
             @endif
             @if ($this->activeCategory())
-                All Posts From :
                 <x-badge wire:navigate href="{{ route('post.index', ['category' => $this->activeCategory->slug]) }}"
                     :textColor="$this->activeCategory->text_color" :bgColor="$this->activeCategory->bg_color">
                     {{ $this->activeCategory->title }}

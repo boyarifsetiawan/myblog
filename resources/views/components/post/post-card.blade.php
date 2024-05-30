@@ -1,7 +1,7 @@
 @props(['post'])
 <div>
     <div class=" col-span-4">
-        <a href="#">
+        <a wire:navigate href="{{ route('post.show', $post->slug) }}">
             <div>
                 <img class="w-55 h-40 rounded-xl" src="{{ $post->getThumbnailImage() }}">
             </div>
@@ -16,7 +16,8 @@
                 @endforeach
                 <p class="mx-auto text-gray-500 text-sm">{{ $post->published_at->diffForHumans() }}</p>
             </div>
-            <a href="#" class="text-xl font-bold text-gray-900">{{ $post->title }}</a>
+            <a wire:navigate href="{{ route('post.show', $post->slug) }}"
+                class="text-xl font-bold text-gray-900">{{ $post->title }}</a>
         </div>
 
     </div>

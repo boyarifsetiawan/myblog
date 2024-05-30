@@ -36,7 +36,7 @@ class PostResource extends Resource
                 Section::make('Main Content')->schema([
                     TextInput::make('title')->required()->minLength(1)->maxLength(150)->live(true)
                         ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
-                            if ($operation === 'create') {
+                            if ($operation === 'edit') {
                                 return;
                             }
                             $set('slug', Str::slug($state));
@@ -48,7 +48,7 @@ class PostResource extends Resource
                     FileUpload::make('image')->image()->directory('posts/thumbnails'),
                     DateTimePicker::make('published_at')->nullable(),
                     Checkbox::make('featured'),
-                    Select::make('author')->relationship('author', 'name')->searchable()->required(),
+                    Select::make('user_id')->relationship('author', 'name')->searchable()->required(),
                     Select::make('categories')->multiple()
                         ->relationship('categories', 'title')
                         ->searchable(),

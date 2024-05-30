@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +13,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+
         $featuredPost = Post::published()->featured()->latest('published_at')->get();
         $latestPost = Post::published()->latest('published_at')->get();
         return view('home', compact('featuredPost', 'latestPost'));

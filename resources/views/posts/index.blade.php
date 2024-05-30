@@ -3,6 +3,7 @@
         <div class="md:col-span-3 col-span-4">
             <livewire:posts-list />
         </div>
+
         <div id="side-bar"
             class="border-t border-t-gray-100 md:border-t-none col-span-4 md:col-span-1 px-3 md:px-6  space-y-6 py-3 pt-5 md:border-l border-gray-100 h-screen sticky top-0">
 
