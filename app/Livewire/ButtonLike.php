@@ -13,7 +13,7 @@ class ButtonLike extends Component
     public function toggleLike()
     {
         if (!Auth::check()) {
-            return $this->redirect('login', true);
+            return $this->redirect('/login', true);
         }
         $user = Auth::user();
 
