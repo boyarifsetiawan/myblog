@@ -19,7 +19,7 @@
             </h2>
 
             <p class="mt-2 text-base text-gray-700 font-light">
-                {{ $post->getExcerpt() }}
+                {!! $post->body !!}
             </p>
             <div class="article-actions-bar mt-6 flex items-center justify-between">
                 <div class="flex items-center space-x-4">
@@ -35,7 +35,7 @@
                         class="text-gray-500 text-sm">{{ Str::macro('readDuration', function (...$body) {
                             $totalWords = str_word_count(implode(' ', $body));
                             $minutesToRead = round($totalWords / 200);
-
+                        
                             return (int) max(1, $minutesToRead);
                         }) }}
                         {{ Str::readDuration($post->body) }} min read</span>
